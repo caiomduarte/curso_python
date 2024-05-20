@@ -3,7 +3,11 @@
 import os
 
 # Criando listas de restaurantes com python
-restaurantes = ['Pizza', 'Sushi']
+restaurantes = [
+                {'nome': 'Praça', 'categoria':'Japonesa', 'ativo': False},
+                {'nome': 'Pizza Suprema', 'categoria':'Pizza', 'ativo': True},
+                {'nome': 'Cantina', 'categoria':'Italiana ', 'ativo': False}
+]
 
 def exibir_nome_do_programa(): 
     print(""" 
@@ -31,8 +35,11 @@ def listar_restaurantes():
 
 
     for restaurante in restaurantes:
-        print(f'.{restaurante}')
+        nome_restaurante = restaurante['nome']
+        categoria = restaurante['categoria']
+        ativo = restaurante['ativo']
 
+        print(f' - {nome_restaurante} | {categoria} | {ativo}')
 
     voltar_ao_menu_princial()
 
