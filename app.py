@@ -2,6 +2,9 @@
 # importando bibliotecas
 import os
 
+# Criando listas de restaurantes com python
+restaurantes = []
+
 def exibir_nome_do_programa(): 
     print(""" 
     
@@ -12,6 +15,18 @@ def exibir_nome_do_programa():
 ██████╔╝██║░░██║██████╦╝╚█████╔╝██║░░██║  ███████╗██╔╝╚██╗██║░░░░░██║░░██║███████╗██████╔╝██████╔╝
 ╚═════╝░╚═╝░░╚═╝╚═════╝░░╚════╝░╚═╝░░╚═╝  ╚══════╝╚═╝░░╚═╝╚═╝░░░░░╚═╝░░╚═╝╚══════╝╚═════╝░╚═════╝░
       """)
+
+def cadastrar_novo_restaurante():
+    os.system('cls')
+    print('Cadastro de novo restaurantes\n')
+
+    nome_do_restaurante = input('Digite o nome do restaurante que deseja cadastrar: ')
+
+    restaurantes.append(nome_do_restaurante)
+
+    print(f'O resutarante {nome_do_restaurante} foi cadastrado com sucesso!')
+    input('Digite uma tecla para voltar ao menu principal')
+    main()
 
 def exibir_opcoes():
     print('1. Cadastrar Restaurante \n')
@@ -31,7 +46,7 @@ def escolher_opcao():
         opcao_escolhida = int(input('Escolha uma opção: '))
         # print('Você escolheu a opção', opcao_escolhida)
         if opcao_escolhida == 1:
-            print('Cadastrar Restaurante')
+            cadastrar_novo_restaurante()
 
         elif opcao_escolhida == 2:
             print('Listar Restaurante')
