@@ -35,14 +35,14 @@ def cadastrar_novo_restaurante():
 
 def listar_restaurantes():
     exibir_subtitulo('Listando os Restaurantes Cadastrados')
-
-
+    
+    print(f'{'Nome do restaurante'.ljust(22)} | {'Categoria'.ljust(20)} | Status')
     for restaurante in restaurantes:
         nome_restaurante = restaurante['nome']
         categoria = restaurante['categoria']
-        ativo = restaurante['ativo']
+        ativo = 'ativado' if restaurante['ativo'] else 'desativado'
 
-        print(f' - {nome_restaurante} | {categoria} | {ativo}')
+        print(f'- {nome_restaurante.ljust(20)} | {categoria.ljust(20)} | {ativo}')
 
     voltar_ao_menu_princial()
 
@@ -50,13 +50,34 @@ def listar_restaurantes():
 def exibir_opcoes():
     print('1. Cadastrar Restaurante \n')
     print('2. Listar Restaurante \n')
-    print('3. Ativar Restaurante \n')
+    print('3. Alterar estado do Restaurante \n')
     print('4. Sair \n')
 
 
 def opcao_invalida():
     print('Opção inválida\n')
     voltar_ao_menu_princial()
+
+def alternar_estado_restaurante():
+    exibir_subtitulo('ALterando estado do restaurante')
+    nome_restaurante = input('Digite o nome do restaurante que deseja alterar o estado: ')
+
+    restaurantes_encontrado = False
+    
+    for restaurante in restaurantes:
+        if nome_restaurante == restaurante['nome']:
+            restaurantes_encontrado = True
+            restaurante['ativo'] = not restaurante['ativo']
+
+            mensagem = f'O restaurante {nome_restaurante} foi alterado com sucesso!' if restaurante['ativo']  else f'O restaurante foi desativado com sucesso!'
+            print(mensagem)
+
+    if not restaurantes_encontrado:
+        print('O restaurante não foi encontrado')
+
+
+    voltar_ao_menu_princial()
+
 
 def escolher_opcao():
     try:
@@ -70,7 +91,7 @@ def escolher_opcao():
             listar_restaurantes()
 
         elif opcao_escolhida == 3:
-            print('Ativar Restaurante')
+            alternar_estado_restaurante()
 
         elif opcao_escolhida == 4:
             finalizar_app()    
@@ -80,12 +101,16 @@ def escolher_opcao():
         opcao_invalida()
         
 def voltar_ao_menu_princial():
-    input('\nDigite uma tecla para voltar ao menu')
+    input('\nDigite uma tecla para voltar ao menu: ')
     main()
 
 def exibir_subtitulo(texto):
     os.system('cls')
+    linha = '*' * (len(texto) + 4)
+    print(linha)
     print(texto)
+    print(linha)
+    print()
     
 # Utilizando interpolação no python
 #  print(f'Você escolheu a opção {opcao_escolhida}')
